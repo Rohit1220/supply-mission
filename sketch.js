@@ -11,7 +11,7 @@ function preload()
 }
 function setup() {
 	createCanvas(800, 700);
-	rectMode(CENTER);
+	rectMode(CENTER);	
 	packageSprite=createSprite(width/2, 80, 10,10);
 	packageSprite.addImage(packageIMG)
 	packageSprite.scale=0.2
@@ -22,26 +22,22 @@ function setup() {
 	groundSprite.shapeColor=color(255)
 	engine = Engine.create();
 	world = engine.world;
-	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:1.5, isStatic:true});
+	packageBody = Bodies.circle(width/2 , 200 , 5 , {restitution:0.5, isStatic:true});
 	World.add(world, packageBody);
 	//Create a Ground
 	ground = Bodies.rectangle(width/2, 650, width, 10 , {isStatic:true} );
  	World.add(world, ground);
-	Engine.run(engine); 
+	Engine.run(engine);
 }
 function draw() {
   rectMode(CENTER);
   background(0);
   packageSprite.x= packageBody.position.x 
   packageSprite.y= packageBody.position.y 
-  if(packageSprite.y-groundSprite.y<=packageSprite.y-groundSprite.y)
-  {
-	Matter.Body.setStatic(packageBody,true);   
-}
-  drawSprites(); 
+  drawSprites();
 }
 function keyPressed() {
-	if (keyCode === DOWN_ARROW) {
-	   Matter.Body.setStatic(packageBody,false);   
-	 }
-   }
+ if (keyCode === DOWN_ARROW) {
+    Matter.Body.setStatic(packageBody,false);   
+  }
+}
